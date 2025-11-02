@@ -1,0 +1,21 @@
+# Dependencias de Node
+node_modules/
+npm-debug.log*
+yarn.lock
+.pnpm-store/
+
+# Variables de entorno (no subir claves ni contraseñas)
+.env
+.env.*
+
+# Archivos del sistema o del editor
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Carpeta de datos (ajustala si querés subir algo de ahí)
+data/
