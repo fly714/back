@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const PRODUCTS_PATH = path.join(__dirname, '../data/products.json');
+const PRODUCTS_PATH = path.join(__dirname, '../../data/products.json');
 
 class ProductManager {
     async read(){
@@ -19,7 +19,7 @@ class ProductManager {
 
     async getById(id){
         const products = await this.read();
-        return products.find(p => p.id === id) || null;
+        return products.find(p => String(p.id) === String(id)) || null;
     }
 
     async create(data){
@@ -35,7 +35,7 @@ class ProductManager {
             id: nextId,
             producto: data.producto,
             precio: data.precio,
-            descripcion: data.descripcion || '',
+            categoria: data.categoria || '',
             stock: data.stock != null ? data.stock : 0
         };
         
@@ -46,7 +46,7 @@ class ProductManager {
 
     async update(id, data){
         const products = await this.read();
-        const idx = products.findIndex(p => p.id === id);
+        const idx = products.findIndex(p => String(p.id) === String(id));
         if (idx === -1) return null;
 
         const {id: ignored, ...rest} = data;
@@ -57,7 +57,7 @@ class ProductManager {
 
     async delete(id){
         const products = await this.read();
-        const idx = products.findIndex(p => p.id === id);
+        const idx = products.findIndex(p => String(p.id) === String(id));
         if (idx === -1) return false;
         products.splice(idx, 1);
         await this.write(products);

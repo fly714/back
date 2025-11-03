@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const ProductManager = require('./ProductManager');
 
-const CARTS_PATH = path.join(__dirname, '../data/carts.json');
+const CARTS_PATH = path.join(__dirname, '../../data/carts.json');
 const productManager = new ProductManager();
 
 class CartsManager {
